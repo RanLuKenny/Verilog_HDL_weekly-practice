@@ -1,11 +1,11 @@
 //Asynchrounous FIFO
 //this is what I wrote in second round interview in front of Dr Ken
 //I finished it after interview
-module A_FIFO(clkr,clkw, rst_n,
-				  wt, rd,
-				  data_in, data_out,
-				  full, empty
-				 );
+module A_FIFO(clkr, clkw, rst_n,
+	      wt, rd,
+	      data_in, data_out,
+	      full, empty
+	     );
 parameter SIZE = 7;
 parameter QUEUE_FULL = 8;
 
