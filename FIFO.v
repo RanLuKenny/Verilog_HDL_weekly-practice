@@ -1,13 +1,13 @@
 `timescale 1ns / 1ps
 module FIFO(rst_n, 
-				clk, 
-				wt, 
-				rd, 
-				data_in,
-				data_out,
-				empty,
-				full,
-				counter, RD_pointer, WT_pointer);
+	    clk, 
+	    wt, 
+	    rd, 
+	    data_in,
+	    data_out,
+	    empty,
+	    full,
+	    counter, RD_pointer, WT_pointer);
 parameter SIZE = 7;
 parameter QUEUE_FULL = 8;
 
@@ -44,12 +44,12 @@ begin
 	   RD_pointer = 0;
 	else
 	   begin
-			if (RD_pointer == QUEUE_FULL)
-				  RD_pointer = 0;
+	      if (RD_pointer == QUEUE_FULL)
+		  RD_pointer = 0;
 	      else if(rd && !empty && !wt)
-              RD_pointer = RD_pointer + 1;
-			else
-	           RD_pointer = RD_pointer;			  
+                  RD_pointer = RD_pointer + 1;
+	      else
+	          RD_pointer = RD_pointer;			  
 	   end
 end
 
@@ -59,26 +59,25 @@ begin
 	   WT_pointer = 0;
 	else
 	   begin
-			if (WT_pointer == QUEUE_FULL)
-				  WT_pointer = 0;
+	      if (WT_pointer == QUEUE_FULL)
+	          WT_pointer = 0;
 	      else if(wt && !full && !rd)
-              WT_pointer = WT_pointer + 1;
+                  WT_pointer = WT_pointer + 1;
 	      else
-	           WT_pointer = WT_pointer;
+	          WT_pointer = WT_pointer;
 	   end
 end
 
 always @(posedge clk)//assign read/write
 begin
-	if(!rst_n)
-		 data_out <= 0;
-   else if(!full && wt &&)
-       memory[WT_pointer] <= data_in;
-   else if (!empty && rd &&) 
-       data_out <= memory[RD_pointer];
-   else
-       data_out <= data_out;
+    if(!rst_n)
+        data_out <= 0;
+    else if(!full && wt &&)
+        memory[WT_pointer] <= data_in;
+    else if (!empty && rd &&) 
+        data_out <= memory[RD_pointer];
+    else
+        data_out <= data_out;
 end
-
 
 endmodule 
